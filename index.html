@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Au P'tit Train</title>
+        <link rel="shortcut icon" href="assets/images/logo.png">
+		<link rel="stylesheet" href="assets/css/style.css"/>
+    </head>
+    <body>
+        <header id="header">
+            <section class="headerTop">
+                <section>
+                    <article>
+                        <p>Ici nous nous adaptons à vos paramètres pour vous simplifier la vie</p>
+                    </article>
+                    <article>                    
+                        <label for="langue">Selectionnez votre langue</label>
+                        <select name="langue" id=""> <!--Menu déroulant avec les options-->
+                            <option value="fr">FR</option>
+                            <option value="en">EN</option>
+                            <option value="jpn">JPN</option>
+                            <option value="esp">ESP</option>
+                            <option value="alm">ALM</option>
+                        </select>
+                    </article>
+                </section>
+            </section>
+            <section class="headerBottom">
+                <section class="main">
+                    <section class="left">
+                        <img src="assets/images/logo.png">
+                        <h1 class="underline bold">Au P'tit train</h1>
+                    </section>
+                    <form class="middle">
+                        <input type="text" id="shearch" placeholder="Rechercher un train via son numéro">
+                        <img src="assets/images/magnifying_glass.png">
+                    </form>
+                    <section class="right">
+                        <article>
+                            <section>
+                                <article>
+                                    <img src="assets/images/hearth.png">
+                                </article>
+                                <article>
+                                    <p>Mes trajets</p>
+                                </article>
+                            </section>
+                            <section>
+                                <article>
+                                    <img src="assets/images/magnifying_glass.png" alt="">
+                                </article>
+                                <article>
+                                    <p>Billets</p>
+                                </article>
+                            </section>
+                            <section>
+                                <article>
+                                    <img src="assets/images/basket.png" alt="">
+                                </article>
+                                <article>
+                                    <p>Mon panier</p>
+                                </article>
+                            </section>
+                            <section>
+                                <article>
+                                    <img src="assets/images/notification.png" alt="">
+                                </article>
+                                <article>
+                                    <p>Notifications</p>
+                                </article>
+                            </section>
+                            <section>
+                                <article>
+                                    <img src="assets/images/gearing.png" alt="">
+                                </article>
+                                <article>
+                                    <p>Mon compte</p>
+                                </article>
+                            </section>
+                        </article>
+                    </section>
+                </section>
+            </section>
+        </header>
+        <main>
+            <form action="">
+                <section class="top">
+                    <section>
+                        <input type="text" id="stationStart" placeholder="Gare de départ" class="text">
+                    </section>
+                    <section>
+                        <input type="datetime-local" id="stationStartDate" class="text">
+                        <input type="time" id="StationStartHour" class="text">
+                    </section>
+                    <section>
+                        <input type="text" id="stationEnd" placeholder="Gare d'arrivée" class="text">
+                    </section>
+                    <section>
+                        <input type="date" id="StationEndDate" class="text">
+                        <input type="time" id="StationEndHour" class="text">
+                    </section>
+                </section>
+                <div class="lign"></div>
+                <section class="bottom">
+                    <input type="number" placeholder="42 €" class="price">
+                    <input type="number" placeholder="75 €" class="price">
+                    <select name="reduction" class="text">
+                        <option value="">Choisir une carte de réduction</option>
+                        <option value="noReduction">pas de réducation</option>
+                        <option value="familly30">Famille nombreuse 30%</option>
+                        <option value="familly40">Famille nombreuse 40%</option>
+                        <option value="familly50">Famille nombreuse 50%</option>
+                        <option value="libelleJ">Carte Libellé Jeune</option>
+                        <option value="avantageSenior">Carte Avantage Sénior</option>
+                        <option value="avantageJeune">Carte Avantage Jeune</option>
+                    </select>
+                    <select name="handicap" id="" class="text">
+                        <option value="">Préciser un handicap</option>
+                        <option value="fauteuil">Fauteuil</option>
+                    </select>
+                </section>
+                <input type="submit" value="rechercher mon trajet">    
+            </form>
+        </main>
+        <footer>
+            <p class="border">Toutes les données utilisées lors de l'usage de ce site ne seront pas rendues public</p>
+            <section>
+                <section class="main">
+                    <article>
+                        <section>
+                            <img src="assets/images/logo.png" alt="">
+                            <a href="#header"><h1 class="underline bold">Au P'tit train</h1></a>
+                        </section>
+                    </article>
+                    <article>
+                        <h2>Service d'aide</h2>
+                        <ul>
+                            <a href="#"><li>Suivis de billet</li></a>
+                            <a href="#"><li>FAQ</li></a>
+                        </ul>
+                    </article>
+                    <article>
+                        <h2>Qui sommes nous ?</h2>
+                        <ul>
+                            <a href="#"><li>CGV</li></a>
+                            <a href="#"><li>CGU</li></a>
+                            <a href="#"><li>Mentions légales</li></a>
+                        </ul>
+                    </article>
+                    <article>
+                        <h2>Nous contacter</h2>
+                        <button><img src="assets/images/email-open.png"><p> PAR MAIL</p></button>
+                        <button><img src="assets/images/phone.png"><p>PAR TÉLÉPHONE</p></button>
+                    </article>
+                </section>
+            </section>
+        </footer>
+        <script src="assets/js/script.js"></script>
+    </body>
+</html>
