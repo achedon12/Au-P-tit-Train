@@ -84,7 +84,7 @@
             </section>
         </header>
         <main>
-            <form action="">
+            <form class="show" id="form" method="post">
                 <section class="top">
                     <section>
                         <input type="text" id="stationStart" placeholder="Gare de départ" class="text">
@@ -122,14 +122,20 @@
                 </section>
                 <input type="submit" value="rechercher mon trajet">    
             </form>
-            <section class="cgu" id="cgu">
-
+            <section class="doNotShow" id="cgu">
+                <p>cgu</p>
             </section>
-            <section class="cgv" id="cgv">
-
+            <section class="doNotShow" id="cgv">
+                <p>cgv</p>
             </section>
-            <section class="mentionsLegals" id="mentionsLegals">
-                
+            <section class="doNotShow" id="mentionsLegals">
+                <p>mentions legales</p>
+            </section>
+            <section class="doNotShow" id="faq">
+                <p>faq</p>
+            </section>
+            <section class="doNotShow" id="suivis">
+                <p>suivis de billet</p>
             </section>
         </main>
         <footer>
@@ -137,24 +143,24 @@
             <section>
                 <section class="main">
                     <article>
-                        <section>
+                        <section id="header-2">
                             <img src="assets/images/logo.png" alt="">
-                            <a href="#header"><h1 class="underline bold">Au P'tit train</h1></a>
+                            <h1 class="underline bold">Au P'tit train</h1>
                         </section>
                     </article>
                     <article>
                         <h2>Service d'aide</h2>
                         <ul>
-                            <li><a href="#">Suivis de billet</a></li>
-                            <li><a href="#">FAQ</a></li>
+                            <li id="suivis-2">Suivis de billet</li>
+                            <li id="faq-2">FAQ</li>
                         </ul>
                     </article>
                     <article>
                         <h2>Qui sommes nous ?</h2>
                         <ul>
-                            <li><a href="#cgv">CGV</a></li>
-                            <li><a href="#cgu">CGU</a></li>
-                            <li><a href="#mentionsLegals">Mentions légales</a></li>
+                            <li class="doNotShow" id="cgv-2">CGV</li>
+                            <li class="doNotShow" id="cgu-2">CGU</li>
+                            <li class="doNotShow" id="mentionsLegals-2">Mentions légales</li>
                         </ul>
                     </article>
                     <article>

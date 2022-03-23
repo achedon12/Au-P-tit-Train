@@ -222,6 +222,9 @@ footer section section.main {
     width: 80%;
     border-top: 1px solid var(--yellow-color-dark);
 }
+footer section section.main article section#header-2{
+    cursor: pointer;
+}
 footer section section article {
     display: flex;
     flex-direction: column;
@@ -245,6 +248,9 @@ footer section article ul{
     list-style-type: none;
     text-align: left;
     margin-left: -40px;
+}
+footer section article ul li{
+    cursor: pointer;
 }
 footer section article ul a{
     text-decoration: none;
@@ -296,15 +302,10 @@ main>section{
     flex-direction: column;  
     align-items: center;
 }
-/* CGU */
-main>section.cgu{
+main>section.doNotShow{
     display: none;
 }
-/* CGV */
-main>section.cgv{
-    display: none;
+main>section.show{
+    display: inherit;
 }
-/* MENTIONS LEGALES */
-main>section.mentionsLegals{
-    display: none;
-}
+
