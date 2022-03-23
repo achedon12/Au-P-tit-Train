@@ -6,6 +6,7 @@
     --color-white: #ffffff;
     --color-black: #000000;
     --grey-color-button: #E7E0EC;
+    --grey-dark-color-button: #ccccccc2;
 }
 * {
     font-family: "Roboto";
@@ -163,15 +164,20 @@ main form input{
     text-align: center;
     background-color: var(--grey-color-button);
     display: inline-flex;
+    text-align:center;
 }
 main form input.text{
     width: 40%;
 }
 main form input.price{
-    width: 10%;
+    width: 15%;
 }
 main form input[type="submit"]{
-    width: 15%;
+    width: 20%;
+    text-align: center;
+    background-color: var(--yellow-color-dark);
+    color: var(--color-white);
+    border-bottom: solid 1px var(--color-white);
 }
 main form .lign{
     margin: 3%;
@@ -191,6 +197,7 @@ main form section.bottom input, main form section.bottom select{
     border: none;
     border-bottom: solid 2px #EC913D;
     border-radius: 4px 4px 0px 0px;
+    width : 40%;
 }
 /* Css pour le footer */
 footer {
@@ -277,4 +284,27 @@ footer button p{
 }
 .bold{
     font-weight: bold;
+}
+
+
+/* Link */
+main>section{
+    width: 50%;
+    height: 25%;
+    background-color: var(--yellow-color-background);
+    display: flex;
+    flex-direction: column;  
+    align-items: center;
+}
+/* CGU */
+main>section.cgu{
+    display: none;
+}
+/* CGV */
+main>section.cgv{
+    display: none;
+}
+/* MENTIONS LEGALES */
+main>section.mentionsLegals{
+    display: none;
 }

@@ -90,7 +90,7 @@
                         <input type="text" id="stationStart" placeholder="Gare de départ" class="text">
                     </section>
                     <section>
-                        <input type="datetime-local" id="stationStartDate" class="text">
+                        <input type="date" id="stationStartDate" class="text">
                         <input type="time" id="StationStartHour" class="text">
                     </section>
                     <section>
@@ -103,10 +103,10 @@
                 </section>
                 <div class="lign"></div>
                 <section class="bottom">
-                    <input type="number" placeholder="42 €" class="price">
-                    <input type="number" placeholder="75 €" class="price">
+                    <input type="number" placeholder="Min : 00 €" class="price">
+                    <input type="number" placeholder="Max : 100 €" class="price">
                     <select name="reduction" class="text">
-                        <option value="">Choisir une carte de réduction</option>
+                        <option value="">Carte de réduction</option>
                         <option value="noReduction">pas de réducation</option>
                         <option value="familly30">Famille nombreuse 30%</option>
                         <option value="familly40">Famille nombreuse 40%</option>
@@ -122,6 +122,15 @@
                 </section>
                 <input type="submit" value="rechercher mon trajet">    
             </form>
+            <section class="cgu" id="cgu">
+
+            </section>
+            <section class="cgv" id="cgv">
+
+            </section>
+            <section class="mentionsLegals" id="mentionsLegals">
+                
+            </section>
         </main>
         <footer>
             <p class="border">Toutes les données utilisées lors de l'usage de ce site ne seront pas rendues public</p>
@@ -136,16 +145,16 @@
                     <article>
                         <h2>Service d'aide</h2>
                         <ul>
-                            <a href="#"><li>Suivis de billet</li></a>
-                            <a href="#"><li>FAQ</li></a>
+                            <li><a href="#">Suivis de billet</a></li>
+                            <li><a href="#">FAQ</a></li>
                         </ul>
                     </article>
                     <article>
                         <h2>Qui sommes nous ?</h2>
                         <ul>
-                            <a href="#"><li>CGV</li></a>
-                            <a href="#"><li>CGU</li></a>
-                            <a href="#"><li>Mentions légales</li></a>
+                            <li><a href="#cgv">CGV</a></li>
+                            <li><a href="#cgu">CGU</a></li>
+                            <li><a href="#mentionsLegals">Mentions légales</a></li>
                         </ul>
                     </article>
                     <article>
