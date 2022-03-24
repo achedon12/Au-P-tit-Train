@@ -116,6 +116,11 @@ header section.headerBottom section.main section.right article section{
     flex-direction: column;
     width: 25%;
 }
+header section.headerBottom section.main section.right article section:hover{
+    background-color: var(--yellow-color-background);
+    color: var(--color-black);
+    height: 47px;
+}
 header section.headerBottom section.main section.right article section article{
     align-items: center;
     justify-content: center;
@@ -145,6 +150,7 @@ main form{
     display: flex;
     flex-direction: column;  
     align-items: center;
+    border-radius: 25px;
 }
 main form section.top{
     display: flex;
@@ -198,6 +204,7 @@ main form section.bottom input, main form section.bottom select{
     border-bottom: solid 2px #EC913D;
     border-radius: 4px 4px 0px 0px;
     width : 40%;
+    height: 100%;
 }
 /* Css pour le footer */
 footer {
@@ -292,7 +299,6 @@ footer button p{
     font-weight: bold;
 }
 
-
 /* Link */
 main>section{
     width: 50%;
@@ -308,4 +314,22 @@ main>section.doNotShow{
 main>section.show{
     display: inherit;
 }
-
+/* CGU */
+main section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+}
+main section h1{
+    text-decoration:underline;
+}
+main section button{
+    width: 150px;
+    height: 50px;
+    margin-top: 10px;
+    color: var(--color-white);
+    background-color: var(--yellow-color-dark);
+    border-radius: 25px;
+    text-align: center;
+}
