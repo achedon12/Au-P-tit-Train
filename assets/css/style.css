@@ -206,6 +206,51 @@ main form section.bottom input, main form section.bottom select{
     width : 40%;
     height: 100%;
 }
+/* Link */
+main>section{
+    width: 50%;
+    height: 25%;
+    background-color: var(--yellow-color-background);
+    display: flex;
+    flex-direction: column;  
+    align-items: center;
+}
+main>section.doNotShow{
+    display: none;
+}
+main>section.show{
+    display: inherit;
+}
+main section{
+    display: flex;
+    border-radius: 25px;
+}
+main section h1{
+    text-decoration:underline;
+}
+main section button{
+    width: 150px;
+    height: 50px;
+    margin-top: 10px;
+    color: var(--color-white);
+    background-color: var(--yellow-color-dark);
+    border-radius: 25px;
+    text-align: center;
+}
+/* main connexion */
+main section#account form h1{
+    margin-top: 0;
+}
+main section#account form.user-connexion{
+    display: inherit;
+}
+main section#account form input[type="submit"]{
+    width: 30%;
+    //TODO: suite
+}
+
+
+
 /* Css pour le footer */
 footer {
     color: var(--yellow-color-dark);
@@ -298,39 +343,4 @@ footer button p{
 }
 .bold{
     font-weight: bold;
-}
-
-/* Link */
-main>section{
-    width: 50%;
-    height: 25%;
-    background-color: var(--yellow-color-background);
-    display: flex;
-    flex-direction: column;  
-    align-items: center;
-}
-main>section.doNotShow{
-    display: none;
-}
-main>section.show{
-    display: inherit;
-}
-/* CGU */
-main section{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 25px;
-}
-main section h1{
-    text-decoration:underline;
-}
-main section button{
-    width: 150px;
-    height: 50px;
-    margin-top: 10px;
-    color: var(--color-white);
-    background-color: var(--yellow-color-dark);
-    border-radius: 25px;
-    text-align: center;
 }
