@@ -1,16 +1,15 @@
 /* definitions des variables */
 let cgu2 = document.getElementById("cgu-2");
 let cgv2 = document.getElementById("cgv-2");
+let notifications2 = document.getElementById("notifications-2");
 let mentionsLegals2 = document.getElementById("mentionsLegals-2");
 let suivis2 = document.getElementById("suivis-2");
 let faq2 = document.getElementById("faq-2");
 let header2 = document.getElementById("header-2");
-
 let billets2 = document.getElementById("billets-2");
 let trajets2 = document.getElementById("trajets-2");
 let basket2 = document.getElementById("basket-2");
 let account2 = document.getElementById("account-2");
-
 let tableau = [document.getElementById("cgu"),
             document.getElementById("cgv"),
             document.getElementById("mentionsLegals"),
@@ -21,6 +20,7 @@ let tableau = [document.getElementById("cgu"),
             document.getElementById("billets"), 
             document.getElementById("basket"), 
             document.getElementById("account"), 
+            document.getElementById("notifications"), 
 ];
 
 /* function */
@@ -65,8 +65,8 @@ header2.addEventListener("click",function(){
 
 trajets2.addEventListener("click",function(){
     doNotShow();
-    tableau[7].style.display = "inherit";
-    tableau[7].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+    tableau[6].style.display = "inherit";
+    tableau[6].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
 });
 billets2.addEventListener("click",function(){
     doNotShow();
@@ -82,4 +82,9 @@ account2.addEventListener("click",function(){
     doNotShow();
     tableau[9].style.display = "inherit";
     tableau[9].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+});
+notifications2.addEventListener("click",function(){
+    doNotShow();
+    tableau[10].style.display = "inherit";
+    tableau[10].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
 });
