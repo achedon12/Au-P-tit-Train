@@ -10,6 +10,8 @@ let billets2 = document.getElementById("billets-2");
 let trajets2 = document.getElementById("trajets-2");
 let basket2 = document.getElementById("basket-2");
 let account2 = document.getElementById("account-2");
+let mail2 =  document.getElementById("mail-2");
+let tel2 =  document.getElementById("tel-2");
 let tableau = [document.getElementById("cgu"),
             document.getElementById("cgv"),
             document.getElementById("mentionsLegals"),
@@ -21,6 +23,9 @@ let tableau = [document.getElementById("cgu"),
             document.getElementById("basket"), 
             document.getElementById("account"), 
             document.getElementById("notifications"), 
+            document.getElementById("mail"),
+            document.getElementById("tel"),
+
 ];
 
 /* function */
@@ -87,4 +92,14 @@ notifications2.addEventListener("click",function(){
     doNotShow();
     tableau[10].style.display = "inherit";
     tableau[10].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+});
+mail2.addEventListener("click",function(){
+    doNotShow();
+    tableau[11].style.display = "inherit";
+    tableau[11].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+});
+tel2.addEventListener("click",function(){
+    doNotShow();
+    tableau[12].style.display = "inherit";
+    tableau[12].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
 });
