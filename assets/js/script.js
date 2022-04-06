@@ -105,9 +105,6 @@ tel2.addEventListener("click",function(){
     tableau[12].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
 });
 
-<<<<<<< HEAD
-
-=======
 /* Data list for  */
 let dataList = document.createElement("datalist");
 let selectTravel = document.querySelector("main form section.top");
@@ -133,4 +130,3 @@ fetch("http://gigondas:1111/sprietna/ihm/tp4/stations")
         console.log('Request Failed : ' + errorMessage)
     })
 });
->>>>>>> 8da516bea63963483ca643ac4e9ba3b549d566a6
