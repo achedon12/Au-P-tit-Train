@@ -103,3 +103,29 @@ tel2.addEventListener("click",function(){
     tableau[12].style.display = "inherit";
     tableau[12].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
 });
+
+/* Data list for  */
+let dataList = document.createElement("datalist");
+let selectTravel = document.querySelector("main form section.top");
+dataList.id = "stations";
+fetch("http://gigondas:1111/sprietna/ihm/tp4/stations")
+.then((response) => {
+    if(response.ok){
+        return response.json();
+    }else{
+        throw response
+    }
+})
+.then((value) => {
+    for(element of value){
+        let option = document.createElement("option");
+        option.value = element.name;
+        dataList.append(option);
+        selectTravel.insertBefore(dataList,document.querySelector("datalist"));
+    }
+})
+.catch((error) => {
+    error.text().then((errorMessage) => {
+        console.log('Request Failed : ' + errorMessage)
+    })
+});

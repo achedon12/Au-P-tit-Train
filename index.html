@@ -88,14 +88,14 @@
             <form class="show" id="form" method="post" action="">
                 <section class="top">
                     <section>
-                        <input type="text" id="stationStart" placeholder="Gare de départ" class="text">
+                        <input list="stations" id="stationStart" name="inputDataGareStart" placeholder="Gare de départ"/>
                     </section>
                     <section>
                         <input type="date" id="stationStartDate" class="text">
                         <input type="time" id="StationStartHour" class="text">
                     </section>
                     <section>
-                        <input type="text" id="stationEnd" placeholder="Gare d'arrivée" class="text">
+                        <input list="stations" id="stationEnd" name="inputDataGareEnd" placeholder="Gare d'arrivée"/>
                     </section>
                     <section>
                         <input type="date" id="StationEndDate" class="text">
@@ -213,7 +213,5 @@
             </section>
         </footer>
         <script src="assets/js/script.js"></script>
-        <script src="assets/js/data.js"></script>
-        <script src="assets/js/account.js"></script>
     </body>
 </html>
