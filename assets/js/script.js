@@ -1,4 +1,5 @@
 /* definitions des variables */
+
 let cgu2 = document.getElementById("cgu-2");
 let cgv2 = document.getElementById("cgv-2");
 let notifications2 = document.getElementById("notifications-2");
@@ -103,3 +104,5 @@ tel2.addEventListener("click",function(){
     tableau[12].style.display = "inherit";
     tableau[12].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
 });
+
+
