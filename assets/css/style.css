@@ -212,8 +212,10 @@ main>section{
     height: 25%;
     background-color: var(--yellow-color-background);
     display: flex;
-    flex-direction: column;  
-    align-items: center;
+    flex-direction: column; 
+    overflow-y:scroll;
+    scrollbar-color: rebeccapurple green;
+    scrollbar-width: thin;
 }
 main>section.doNotShow{
     display: none;
@@ -236,6 +238,15 @@ main section button{
     background-color: var(--yellow-color-dark);
     border-radius: 25px;
     text-align: center;
+}
+main> .center{
+    text-align: center;
+}
+main> .left{
+    text-align: left;
+}
+main> .right{
+    text-align: right;
 }
 /* main connexion */
 main section#account form h1{
