@@ -259,7 +259,9 @@ main section button{
     text-align: center;
 }
 main> .center{
-    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 2%;
 }
 main> .left{
     text-align: left;
@@ -275,10 +277,21 @@ main section#account form.user-connexion{
     display: inherit;
 }
 main section#account form input[type="submit"]{
-    width: 30%;
-    //TODO: suite
+    width: auto;
+    text-align: center;
+    border-bottom: solid 1px var(--color-white);
 }
-
+main section#account form input[type="mailto"],main section#account form input[type="password"]{
+    -webkit-appearance: none;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+main section#account form input[type="mailto"]:invalid, main section#account form input[type="password"]:invalid{
+    box-shadow: 0 0 5px 1px red;
+}
+main section#account form input[type="mailto"]:focus:invalid, main section#account form input[type="password"]:focus:invalid{
+    outline: none;
+}
 
 
 /* Css pour le footer */
