@@ -216,15 +216,8 @@ main>section{
     overflow-y:scroll;
     scrollbar-color: var(--yellow-color-dark) var(--yellow-color-background);
     scrollbar-width: thin;
-}
-#mentionsLegals, #cgu, #cgv, #tel, #mail{
-    align-items: center;    
-}
-#tel h1, #mail h1{
-    margin-top: 20%;
-}
-#tel p,#mail p{
-    margin-top: 5%;
+    align-items: center;
+    padding-top: 2%;
 }
 main>section.doNotShow{
     display: none;
@@ -265,7 +258,9 @@ main section button{
     text-align: center;
 }
 main> .center{
-    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 2%;
 }
 main> .left{
     text-align: left;
@@ -281,31 +276,20 @@ main section#account form.user-connexion{
     display: inherit;
 }
 main section#account form input[type="submit"]{
-    width: 30%;
-    //TODO: suite
-}
-#trajets{
-    align-items: center;
-    flex-wrap: wrap;
-    flex-direction: row;
-}
-#trajets article{
-    margin: 1%;
-    width:80%;
-    background-color: var(--yellow-color-dark);
-    display: flex;
-    flex-direction: column;  
-    align-items: center;
-    border-radius: 25px;
-}
-#trajets article p{
+    width: auto;
     text-align: center;
-    margin:0.5%;
-    color: var(--color-white)
+    border-bottom: solid 1px var(--color-white);
 }
-#trajets button{
-    margin : 0.5%;
-    border-width: 0px;
+main section#account form input[type="mailto"],main section#account form input[type="password"]{
+    -webkit-appearance: none;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+main section#account form input[type="mailto"]:invalid, main section#account form input[type="password"]:invalid{
+    box-shadow: 0 0 5px 1px red;
+}
+main section#account form input[type="mailto"]:focus:invalid, main section#account form input[type="password"]:focus:invalid{
+    outline: none;
 }
 /* Css pour le footer */
 footer {
@@ -388,6 +372,9 @@ footer section article button{
 footer section article img{
     width: 25px;
     height: 25px;
+}
+footer a{
+    text-decoration: none;
 }
 footer button p{
     padding: 10px;

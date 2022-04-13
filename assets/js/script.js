@@ -1,4 +1,5 @@
 /* definitions des variables */
+let connexion = sessionStorage.getItem("connexion");
 let cgu2 = document.getElementById("cgu-2");
 let cgv2 = document.getElementById("cgv-2");
 let notifications2 = document.getElementById("notifications-2");
@@ -10,8 +11,6 @@ let billets2 = document.getElementById("billets-2");
 let trajets2 = document.getElementById("trajets-2");
 let basket2 = document.getElementById("basket-2");
 let account2 = document.getElementById("account-2");
-let mail2 =  document.getElementById("mail-2");
-let tel2 =  document.getElementById("tel-2");
 let tableau = [document.getElementById("cgu"),
             document.getElementById("cgv"),
             document.getElementById("mentionsLegals"),
@@ -23,8 +22,6 @@ let tableau = [document.getElementById("cgu"),
             document.getElementById("basket"), 
             document.getElementById("account"), 
             document.getElementById("notifications"), 
-            document.getElementById("mail"),
-            document.getElementById("tel"),
             document.getElementById("account-deconnexion"),
 
 ];
@@ -56,7 +53,6 @@ function connect(event){
         }else{
             alert("Veuillez préciser un mail et un mot de passe valide")
         }
-
     })
     .catch((error) => {
         error.text().then((errorMessage) => {
@@ -102,7 +98,6 @@ header2.addEventListener("click",function(){
     tableau[3].style.display = "inherit";
     document.getElementById("header").scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
 });
-
 trajets2.addEventListener("click",function(){
     doNotShow();
     tableau[6].style.display = "inherit";
@@ -120,33 +115,22 @@ basket2.addEventListener("click",function(){
 });
 account2.addEventListener("click",function(){
     doNotShow();
-   if(connexion != null){
-    tableau[13].style.display = "inherit";
-    tableau[13].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-    
-   }else{
-    tableau[9].style.display = "inherit";
-    tableau[9].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-   }
+    if(connexion != null){
+        tableau[11].style.display = "inherit";
+        tableau[11].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+    }else{
+        tableau[9].style.display = "inherit";
+        tableau[9].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+    }
 });
 notifications2.addEventListener("click",function(){
     doNotShow();
     tableau[10].style.display = "inherit";
     tableau[10].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
 });
-mail2.addEventListener("click",function(){
-    doNotShow();
-    tableau[11].style.display = "inherit";
-    tableau[11].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-});
-tel2.addEventListener("click",function(){
-    doNotShow();
-    tableau[12].style.display = "inherit";
-    tableau[12].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
-});
 
-document.querySelector('#connect').addEventListener('click', connect); 
-document.querySelector('#deconnect').addEventListener('click', deconnect); 
+document.querySelector('#connect').addEventListener('click', connect()); 
+document.querySelector('#deconnect').addEventListener('click', deconnect()); 
 
 
 /* Data list for  */
@@ -177,7 +161,7 @@ fetch("http://gigondas:1111/sprietna/ihm/tp4/stations")
 
 
 /* connexion */
-let connexion = sessionStorage.getItem("connexion");
+
 if(connexion != null){
     document.getElementById("account-name").innerHTML = sessionStorage.getItem("user");
 }

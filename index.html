@@ -83,7 +83,6 @@
                 </section>
             </section>
         </header>
-
         <main>
             <form class="show" id="form" method="post" action="">
                 <section class="top">
@@ -351,38 +350,8 @@
                 <h1>CGV de l'entreprise</h1>
                 <a href="assets/pdf/cgv/loremipsumcgv.pdf"><button>Obtenir les CGV de l'entreprise</button></a>
             </section>
-            <!-- reste à faire-->
             <section class="doNotShow" id="trajets">
-                <article>
-                    <p>| Gare de Lyon | 12-04-2022 | 09h00</p>
-                    <p>| Gare de Valence | 12-04-2022 | 11h00</p>
-                </article>
-                <button>Annuler le trajet</button>
-                <article>
-                    <p>| Gare de Lyon | 12-04-2022 | 09h00</p>
-                    <p>| Gare de Valence | 12-04-2022 | 11h00</p>
-                </article>
-                <button>Annuler le trajet</button>
-                <article>
-                    <p>| Gare de Lyon | 12-04-2022 | 09h00</p>
-                    <p>| Gare de Valence | 12-04-2022 | 11h00</p>
-                </article>
-                <button>Annuler le trajet</button>
-                <article>
-                    <p>| Gare de Lyon | 12-04-2022 | 09h00</p>
-                    <p>| Gare de Valence | 12-04-2022 | 11h00</p>        
-                </article>
-                <button>Annuler le trajet</button>
-                <article>
-                    <p>| Gare de Lyon | 12-04-2022 | 09h00</p>
-                    <p>| Gare de Valence | 12-04-2022 | 11h00</p>
-                </article>
-                <button>Annuler le trajet</button>
-                <article>
-                    <p>| Gare de Lyon | 12-04-2022 | 09h00</p>
-                    <p>| Gare de Valence | 12-04-2022 | 11h00</p>
-                </article>
-                <button>Annuler le trajet</button>
+                <h1>mes trajets</h1>
             </section>
             <section class="doNotShow" id="billets">
                 <p>mes billets</p>
@@ -390,8 +359,19 @@
             <section class="doNotShow" id="basket">
                 <p>mon panier</p>
             </section>
-            <section class="doNotShow" id="account">
-                <p>mon compte</p>
+            <section class="doNotShow center" id="account">
+                <form class="user-connexion">
+                    <h1>Connexion utilisateur</h1>
+                    <section>
+                        <input type="mailto" placeholder="mail" id="mailConnection" required>
+                        <input type="password" placeholder="mon mot de passe" id="passwordConnection" required>
+                        <input type="submit" value="se connecter" id="connect">
+                    </section>
+                </form>
+            </section>
+            <section class="doNotShow center" id="account-deconnexion">
+                <h1>Se deconnecter de son compte</h1>
+                <button id="deconnect">Se deconnecter</button>
             </section>
             <section class="doNotShow" id="notifications">
                 <p>paramètres des notifications</p>
@@ -424,8 +404,8 @@
                     </article>
                     <article>
                         <h2>Nous contacter</h2>
-                        <button><img src="assets/images/email-open.png"><p class="doNotShow" id="mail-2"> PAR MAIL</p></button>
-                        <button><img src="assets/images/phone.png"><p class="doNotShow" id="tel-2">PAR TÉLÉPHONE</p></button>
+                        <a href="mailto:auptittrain@gmail.com"><button><img src="assets/images/email-open.png"><p class="doNotShow" id="mail-2"> PAR MAIL</p></button></a>
+                        <a href="tel:+33626140913"><button><img src="assets/images/phone.png"><p class="doNotShow" id="tel-2">PAR TÉLÉPHONE</p></button></a>
                     </article>
                 </section>
             </section>
