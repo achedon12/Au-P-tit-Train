@@ -33,7 +33,7 @@
                         <h1 class="underline bold">Au P'tit train</h1>
                     </section>
                     <form class="middle">
-                        <input type="text" id="shearch" placeholder="Rechercher un train via son numéro" onclick="launchAudio()">
+                        <input type="text" id="shearch" placeholder="Rechercher un train via son numéro">
                         <img src="assets/images/magnifying_glass.png">
                     </form>
                     <section class="right">
@@ -75,7 +75,7 @@
                                     <img src="assets/images/gearing.png" alt="">
                                 </article>
                                 <article>
-                                    <p id="account-name">Mon compte</p>
+                                    <p>Mon compte</p>
                                 </article>
                             </section>
                         </article>
@@ -83,8 +83,9 @@
                 </section>
             </section>
         </header>
+
         <main>
-            <form class="show" id="form" method="post">
+            <form class="show" id="form" method="post" action="">
                 <section class="top">
                     <section>
                         <input list="stations" id="stationStart" name="inputDataGareStart" placeholder="Gare de départ"/>
@@ -333,47 +334,66 @@
                     venenatis lectus magna fringilla urna.
                     </p>
                     <p id="paraphe">Au P'tit Train</p>
+
             </section>
-            <section class="doNotShow center" id="suivis">
+            <section class="doNotShow" id="suivis">
                 <p>suivis de billet</p>
             </section>
-            <section class="doNotShow center" id="tel">
-                <h1>Téléphone :</h1>
+            <section class="doNotShow" id="tel">
+                <h1>Téléphone</h1>
                 <p>06.05.04.03.02</p>
             </section>
-            <section class="doNotShow center" id="mail">
-                <h1>Mail :</h1>
+            <section class="doNotShow" id="mail">
+                <h1>Mail</h1>
                 <p>au-petit-train@gmail.com</p>
             </section>
-            <section class="doNotShow center" id="cgv">
+            <section class="doNotShow" id="cgv">
                 <h1>CGV de l'entreprise</h1>
                 <a href="assets/pdf/cgv/loremipsumcgv.pdf"><button>Obtenir les CGV de l'entreprise</button></a>
             </section>
             <!-- reste à faire-->
-            <section class="doNotShow center" id="trajets">
-                <p>mes trajets</p>
+            <section class="doNotShow" id="trajets">
+                <article>
+                    <p>| Gare de Lyon | 12-04-2022 | 09h00</p>
+                    <p>| Gare de Valence | 12-04-2022 | 11h00</p>
+                </article>
+                <button>Annuler le trajet</button>
+                <article>
+                    <p>| Gare de Lyon | 12-04-2022 | 09h00</p>
+                    <p>| Gare de Valence | 12-04-2022 | 11h00</p>
+                </article>
+                <button>Annuler le trajet</button>
+                <article>
+                    <p>| Gare de Lyon | 12-04-2022 | 09h00</p>
+                    <p>| Gare de Valence | 12-04-2022 | 11h00</p>
+                </article>
+                <button>Annuler le trajet</button>
+                <article>
+                    <p>| Gare de Lyon | 12-04-2022 | 09h00</p>
+                    <p>| Gare de Valence | 12-04-2022 | 11h00</p>        
+                </article>
+                <button>Annuler le trajet</button>
+                <article>
+                    <p>| Gare de Lyon | 12-04-2022 | 09h00</p>
+                    <p>| Gare de Valence | 12-04-2022 | 11h00</p>
+                </article>
+                <button>Annuler le trajet</button>
+                <article>
+                    <p>| Gare de Lyon | 12-04-2022 | 09h00</p>
+                    <p>| Gare de Valence | 12-04-2022 | 11h00</p>
+                </article>
+                <button>Annuler le trajet</button>
             </section>
-            <section class="doNotShow center" id="billets">
+            <section class="doNotShow" id="billets">
                 <p>mes billets</p>
             </section>
-            <section class="doNotShow center" id="basket">
+            <section class="doNotShow" id="basket">
                 <p>mon panier</p>
             </section>
-            <section class="doNotShow center" id="account">
-                <form class="user-connexion">
-                    <h1>Connexion utilisateur</h1>
-                    <section>
-                        <input type="mailto" placeholder="mail" id="mailConnection" required>
-                        <input type="password" placeholder="mon mot de passe" id="passwordConnection" required>
-                        <input type="submit" value="se connecter" id="connect">
-                    </section>
-                </form>
+            <section class="doNotShow" id="account">
+                <p>mon compte</p>
             </section>
-            <section class="doNotShow center" id="account-deconnexion">
-                <h1>Se deconnecter de son compte</h1>
-                <button id="deconnect">Se deconnecter</button>
-            </section>
-            <section class="doNotShow center" id="notifications">
+            <section class="doNotShow" id="notifications">
                 <p>paramètres des notifications</p>
             </section>
         </main>
