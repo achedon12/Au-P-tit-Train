@@ -1,4 +1,5 @@
 /* definitions des variables */
+let user = sessionStorage.getItem("user");
 let connexion = sessionStorage.getItem("connexion");
 let cgu2 = document.getElementById("cgu-2");
 let cgv2 = document.getElementById("cgv-2");
@@ -25,7 +26,7 @@ let tableau = [document.getElementById("cgu"),
             document.getElementById("account-deconnexion"),
 
 ];
-
+var id=0;
 /* functions */
 function doNotShow(){
     for(element of tableau){
@@ -33,23 +34,36 @@ function doNotShow(){
     }
 }
 function connect(event){
+    let data = [];
     event.preventDefault();
     event.stopPropagation();
     fetch('http://gigondas:1111/sprietna/ihm/tp4/users')
-    .then((response) => {
+    .then(response => {
         if (response.ok) {
-            return response.text();
+            return response.json();
         } else {
            throw response;
         }
     })
-    .then((user) => {
-        let mail = document.querySelector("#mailConnection");
-        let mdp = document.querySelector("#passwordConnection");
-        if(mail.value != "" && mdp.value != ""){
-            sessionStorage.setItem("connexion",true);
-            sessionStorage.setItem("user",user);
-            window.location.replace("index.html");
+    .then(user => {
+        let mail = document.getElementById("mailConnection").value;
+        let mdp = document.getElementById("passwordConnection").value;
+        if(mail != "" && mdp != ""){
+            for(element of user){
+                if(element.mail == mail){
+                    sessionStorage.setItem("user",element.surname);
+                    sessionStorage.setItem("connexion",true);
+                    console.log("Vous etes maintenant connecté sur le compte n°"+element.id);
+                    window.location.replace("index.html");
+                    break;
+                }else{
+                    alert("Le mot de passe est incorrect");
+                    break;
+                }
+            }
+            for(lol of data){
+                console.log(lol);
+            }
         }else{
             alert("Veuillez préciser un mail et un mot de passe valide")
         }
@@ -115,7 +129,7 @@ basket2.addEventListener("click",function(){
 });
 account2.addEventListener("click",function(){
     doNotShow();
-    if(connexion != null){
+    if(user != null){
         tableau[11].style.display = "inherit";
         tableau[11].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
     }else{
@@ -129,8 +143,8 @@ notifications2.addEventListener("click",function(){
     tableau[10].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
 });
 
-document.querySelector('#connect').addEventListener('click', connect()); 
-document.querySelector('#deconnect').addEventListener('click', deconnect()); 
+document.querySelector('#connect').addEventListener('click', connect); 
+document.querySelector('#deconnect').addEventListener('click', deconnect); 
 
 
 /* Data list for  */
@@ -161,7 +175,11 @@ fetch("http://gigondas:1111/sprietna/ihm/tp4/stations")
 
 
 /* connexion */
-
 if(connexion != null){
-    document.getElementById("account-name").innerHTML = sessionStorage.getItem("user");
+    console.log(user);
+    let doc = document.createElement("p");
+    doc.textContent = user;
+    let name = document.querySelector("#test");
+    name.removeChild(document.getElementById("name"));
+    name.appendChild(doc);
 }
