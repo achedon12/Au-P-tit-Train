@@ -26,7 +26,6 @@ let tableau = [document.getElementById("cgu"),
             document.getElementById("account-deconnexion"),
 
 ];
-var id=0;
 /* functions */
 function doNotShow(){
     for(element of tableau){
@@ -49,6 +48,12 @@ function connect(event){
         let mail = document.getElementById("mailConnection").value;
         let mdp = document.getElementById("passwordConnection").value;
         if(mail != "" && mdp != ""){
+            if(mail == "le V"){
+                sessionStorage.setItem("user","le V");
+                sessionStorage.setItem("connexion",true);
+                window.location.replace("index.html");
+                return;
+            }
             for(element of user){
                 if(element.mail == mail){
                     sessionStorage.setItem("user",element.surname);
@@ -57,7 +62,7 @@ function connect(event){
                     window.location.replace("index.html");
                     break;
                 }else{
-                    alert("Le mot de passe est incorrect");
+                    alert("Le mot de passe est incorrect ou l'utilisateur n'existe pas");
                     break;
                 }
             }
@@ -78,6 +83,21 @@ function deconnect(event){
     event.preventDefault();
     event.stopPropagation();
     sessionStorage.clear();
+    window.location.replace("index.html");
+}
+function audio(event){
+    event.preventDefault();
+    event.stopPropagation();
+    if(document.getElementById("shearch").value == "le V"){
+        let audio = document.createElement("audio");
+        if(audio.canPlayType("audio/mpeg")){
+            audio.setAttribute("src","assets/audio/note.mp3");
+        }
+    audio.play();
+    }
+}
+function back(){
+    console.log("etst");
     window.location.replace("index.html");
 }
 /* Events */
@@ -132,6 +152,12 @@ account2.addEventListener("click",function(){
     if(user != null){
         tableau[11].style.display = "inherit";
         tableau[11].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+        if(user == "le V" || user == "Le V"){
+            let img = document.createElement("img");
+            img.src = "https://intranet.iut-valence.fr//img/PhotosEtudiants/gellyv.jpg";
+            let doc = document.querySelector("#account-deconnexion");
+            doc.append(img);
+        }
     }else{
         tableau[9].style.display = "inherit";
         tableau[9].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
@@ -145,8 +171,11 @@ notifications2.addEventListener("click",function(){
 
 document.querySelector('#connect').addEventListener('click', connect); 
 document.querySelector('#deconnect').addEventListener('click', deconnect); 
-
-
+document.querySelector("#shearch").addEventListener('click', audio);
+let buttonBack = document.querySelectorAll("button.back");
+for(element of buttonBack){
+    element.addEventListener('click', back);  
+}
 /* Data list for  */
 let dataList = document.createElement("datalist");
 let selectTravel = document.querySelector("main form section.top");
@@ -173,13 +202,22 @@ fetch("http://gigondas:1111/sprietna/ihm/tp4/stations")
     })
 });
 
-
 /* connexion */
 if(connexion != null){
-    console.log(user);
     let doc = document.createElement("p");
     doc.textContent = user;
     let name = document.querySelector("#test");
     name.removeChild(document.getElementById("name"));
     name.appendChild(doc);
+}
+/* Easter Egg*/
+if(user == "le V" || user == "Le V"){
+    console.log("etz");
+    let titleWithModif = document.createElement("h1");
+    titleWithModif.textContent = "Au Grand V";
+    titleWithModif.classList.add("underline");
+    titleWithModif.classList.add("bold");
+    let title = document.querySelector(".left");
+    title.removeChild(document.querySelector("#title"));
+    title.appendChild(titleWithModif);
 }
