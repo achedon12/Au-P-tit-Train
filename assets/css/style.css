@@ -7,6 +7,7 @@
     --color-black: #000000;
     --grey-color-button: #E7E0EC;
     --grey-dark-color-button: #ccccccc2;
+    --color-target: #ff0000;
 }
 * {
     font-family: "Roboto";
@@ -271,6 +272,9 @@ main> .left{
 main> .right{
     text-align: right;
 }
+.leV{
+    width: 20%;
+}
 /* main connexion */
 main section#account form h1{
     margin-top: 0;
@@ -294,6 +298,27 @@ main section#account form input[type="mailto"]:invalid, main section#account for
 main section#account form input[type="mailto"]:focus:invalid, main section#account form input[type="password"]:focus:invalid{
     outline: none;
 }
+/* main billets */
+main section#billets>section.allBillets{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--yellow-color-dark);
+    color: var(--yellow-color-dark);
+    width: 95%;
+    justify-content: center;
+}
+main section#billets section.allBillets section.newBillet{
+    display: flex;
+    width: 100%;
+    margin: 1%;
+    background-color: var(--yellow-color-background);
+    font-size: 40%;
+    justify-content: space-between;
+}
+main section#billets section.allBillets section.newBillet .value {
+    color: var(--color-target);
+}
+
 /* Css pour le footer */
 footer {
     color: var(--yellow-color-dark);

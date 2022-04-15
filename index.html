@@ -84,17 +84,17 @@
             </section>
         </header>
         <main>
-            <form class="show" id="form" method="post" action="">
+            <form class="show" id="form" method="post">
                 <section class="top">
                     <section>
-                        <input list="stations" id="stationStart" name="inputDataGareStart" placeholder="Gare de départ"/>
+                        <input type="text" list="stations" id="stationStart" name="inputDataGareStart" placeholder="Gare de départ"/>
                     </section>
                     <section>
                         <input type="date" id="stationStartDate" class="text">
                         <input type="time" id="StationStartHour" class="text">
                     </section>
                     <section>
-                        <input list="stations" id="stationEnd" name="inputDataGareEnd" placeholder="Gare d'arrivée"/>
+                        <input type="text" list="stations" id="stationEnd" name="inputDataGareEnd" placeholder="Gare d'arrivée"/>
                     </section>
                     <section>
                         <input type="date" id="StationEndDate" class="text">
@@ -103,8 +103,8 @@
                 </section>
                 <div class="lign"></div>
                 <section class="bottom">
-                    <input type="number" placeholder="Prix max : 100 €" class="price">
-                    <select name="reduction" class="text">
+                    <input type="number" placeholder="Prix max : 100 €" class="price" id="maxPrice">
+                    <select name="reduction" class="text" id="reduction">
                         <option value="">Carte de réduction</option>
                         <option value="noReduction">pas de réducation</option>
                         <option value="familly30">Famille nombreuse 30%</option>
@@ -114,14 +114,14 @@
                         <option value="avantageSenior">Carte Avantage Sénior</option>
                         <option value="avantageJeune">Carte Avantage Jeune</option>
                     </select>
-                    <select name="handicap" id="" class="text">
+                    <select name="handicap" id="handicap" class="text">
                         <option value="">Préciser un handicap</option>
                         <option value="fauteuil">Fauteuil</option>
                         <option value="fauteuil">Malvoyant</option>
                         <option value="fauteuil">Autre</option>
                     </select>
                 </section>
-                <input type="submit" value="rechercher mon trajet">    
+                <input type="submit" value="rechercher mon trajet" id="submitBillet">
             </form>
             <section class="doNotShow" id="cgu">
                 <h1>CGU de l'entreprise</h1>
@@ -350,7 +350,23 @@
                 <button class="back">Quitter</button>
             </section>
             <section class="doNotShow" id="billets">
-                <p>mes billets</p>
+                <h1>Mes Billets</h1>
+                <section class="allBillets">
+                    <section class="newBillet">
+                        <h2 class="underline">Gare de départ : </h2>
+                        <h2 class="gareDepart value">Paris</h2>
+                        <h2 class="underline">Date de départ</h2>
+                        <h2 class="dateDepart value">10/03/2003</h2>
+                        <h2 class="underline">Gare d'arrivée : </h2>
+                        <h2 class="gareDepart value">Valence</h2>
+                        <h2 class="underline">Date de d'arrivée</h2>
+                        <h2 class="dateArrivee value value">10/05/2003</h2>
+                        <h2 class="underline">Handicap :</h2>
+                        <h2 class="handicap value">Fauteuil</h2>
+                        <h2 class="underline">Reduction : </h2>
+                        <h2 class="reduction value"> Famille nombreuse 30%</h2>
+                    </section>
+                </section>
                 <button class="back">Quitter</button>
             </section>
             <section class="doNotShow" id="basket">

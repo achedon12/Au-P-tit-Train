@@ -61,14 +61,12 @@ function connect(event){
                     console.log("Vous etes maintenant connecté sur le compte n°"+element.id);
                     window.location.replace("index.html");
                     break;
-                }else{
-                    alert("Le mot de passe est incorrect ou l'utilisateur n'existe pas");
-                    break;
                 }
             }
-            for(lol of data){
-                console.log(lol);
+            if(connexion == null){
+                alert("L'identifiant n'existe pas");
             }
+            
         }else{
             alert("Veuillez préciser un mail et un mot de passe valide")
         }
@@ -97,8 +95,27 @@ function audio(event){
     }
 }
 function back(){
-    console.log("etst");
     window.location.replace("index.html");
+}
+function formToBillet(event){
+    event.preventDefault();
+    event.stopPropagation();
+    let gareDepart = document.getElementById("stationStart").value;
+    let dateDepart = document.getElementById("stationStartDate").value;
+    let HourDepart = document.getElementById("StationStartHour").value;
+    
+    let gareArrivee = document.getElementById("stationEnd").value;
+    let dateArrivee = document.getElementById("StationEndDate").value;
+    let HourArrivee = document.getElementById("StationEndHour").value;
+    let maxPrice = document.getElementById("maxPrice").value;
+    let handicap = document.getElementById("handicap").value;
+    let reduction = document.getElementById("reduction").value;
+    if(gareDepart != "" || dateDepart != "" || HourDepart != "" || gareArrivee != "" || dateArrivee != "" || HourArrivee != "" || maxPrice != "" || handicap != "" || reduction != ""){
+        fetch()
+        window.location.replace("index.html");
+        }else{
+            alert("Veuillez compléter toutes les données pour ajouter un billet à votre panier");
+        }
 }
 /* Events */
 cgu2.addEventListener("click",function(){
@@ -154,7 +171,8 @@ account2.addEventListener("click",function(){
         tableau[11].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
         if(user == "le V" || user == "Le V"){
             let img = document.createElement("img");
-            img.src = "https://intranet.iut-valence.fr//img/PhotosEtudiants/gellyv.jpg";
+            img.src = "https://cdn.discordapp.com/attachments/898529173843353622/964404861900840960/IMG_20220331_231306.jpg";
+            img.classList.add("leV");
             let doc = document.querySelector("#account-deconnexion");
             doc.append(img);
         }
@@ -172,6 +190,7 @@ notifications2.addEventListener("click",function(){
 document.querySelector('#connect').addEventListener('click', connect); 
 document.querySelector('#deconnect').addEventListener('click', deconnect); 
 document.querySelector("#shearch").addEventListener('click', audio);
+document.querySelector("#submitBillet").addEventListener('click', formToBillet);
 let buttonBack = document.querySelectorAll("button.back");
 for(element of buttonBack){
     element.addEventListener('click', back);  
