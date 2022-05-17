@@ -3,6 +3,7 @@ let user = sessionStorage.getItem("user");
 let connexion = sessionStorage.getItem("connexion");
 let email = sessionStorage.getItem("email");
 let id = sessionStorage.getItem("id");
+let trajets = sessionStorage.getItem("trajets");
 let cgu2 = document.getElementById("cgu-2");
 let cgv2 = document.getElementById("cgv-2");
 let notifications2 = document.getElementById("notifications-2");
@@ -26,6 +27,7 @@ let tableau = [document.getElementById("cgu"),
             document.getElementById("account"), 
             document.getElementById("notifications"), 
             document.getElementById("account-deconnexion"),
+            document.getElementById("search"),
 
 ];
 /* functions */
@@ -100,25 +102,111 @@ function audio(event){
 function back(){
     window.location.replace("index.html");
 }
+function addBasket(event){
+    console.log("test");
+    event.preventDefault();
+    event.stopPropagation();
+    addToBasket(event.target.id);
+    alert("Vous avez bien ajouté le billet au panier");
+}
+function addToBasket(value){
+    let trajet = [];
+    for(element of JSON.parse(sessionStorage.getItem("trajets"))){
+        trajet.push(element);
+    }
+    trajet.push(value);
+    sessionStorage.setItem("trajets",JSON.stringify(trajet));
+
+}
 function formToBillet(event){
     event.preventDefault();
     event.stopPropagation();
     let gareDepart = document.getElementById("stationStart").value;
     let dateDepart = document.getElementById("stationStartDate").value;
     let HourDepart = document.getElementById("StationStartHour").value;
-    
     let gareArrivee = document.getElementById("stationEnd").value;
     let dateArrivee = document.getElementById("StationEndDate").value;
     let HourArrivee = document.getElementById("StationEndHour").value;
     let maxPrice = document.getElementById("maxPrice").value;
     let handicap = document.getElementById("handicap").value;
     let reduction = document.getElementById("reduction").value;
-    if(gareDepart != "" || dateDepart != "" || HourDepart != "" || gareArrivee != "" || dateArrivee != "" || HourArrivee != "" || maxPrice != "" || handicap != "" || reduction != ""){
-        fetch()
-        window.location.replace("index.html");
+    let gareDepartID;
+    let gareArriveeID;
+    /* Premier fetch */
+    fetch("http://gigondas:1111/sprietna/ihm/tp4/stations")
+    .then(response =>{
+        if(response.ok){
+            return response.json();
+        }else{
+            throw response;
+        }
+    })
+    .then(gare => {
+        if(gareDepart != "" && dateDepart != "" && HourDepart != "" && gareArrivee != "" && dateArrivee != "" && HourArrivee != "" && maxPrice != "" && handicap != "" && reduction != ""){
+            for(element of gare){
+                if(element.name == gareDepart){
+                    gareDepartID = element.id;
+                }else if(element.name == gareArrivee){
+                    gareArriveeID = element.id;
+                }
+            }
+            /* Second fetch */
+            fetch('http://gigondas:1111/sprietna/ihm/tp4/schedules?cityFrom=' + gareDepartID + '&cityTo=' + gareArriveeID + '&date=' + dateDepart + '&timeFrom=' + HourDepart + ' ')
+            .then(response => {
+                if(response.ok){
+                    return response.json();
+                }else{
+                    throw response;
+                }
+            })
+            .then((billet) => {
+                console.log("voici la liste de tous les billets");
+                let AllBillets = document.querySelector("section.allBilletsSearch");
+                if(billet.lenght == 0){
+                    let h2 = document.createElement("h2");
+                    h2.textContent = "Aucun billet n'est disponible pour votre trajet"
+                    AllBillets.insertBefore(h2,document.querySelector("section.allBilletsSearch section.newBillets"));
+                }else{
+                    for(element of billet){
+                        let section = document.createElement("section");
+                        section.classList.add("newBillet");   
+                        let h2_1 = document.createElement("h2");
+                        h2_1.textContent = element.date;
+                        section.append(h2_1);              
+                        let h2_2 = document.createElement("h2");
+                        h2_2.textContent = element.departureTime;
+                        section.append(h2_2);              
+                        let h2_3 = document.createElement("h2");
+                        h2_3.textContent = element.travel.from.name+" "+element.travel.to.name;
+                        section.append(h2_3);              
+                        let h2_4 = document.createElement("h2");
+                        h2_4.textContent = element.price+" €";
+                        section.append(h2_4);
+                        let button = document.createElement("button");
+                        button.classList.add("addToBasket");
+                        button.id = element.date+":"+element.departureTime+":"+element.travel.from.name+":"+element.travel.to.name+":"+element.price;
+                        button.textContent = "Ajouter au panier";
+                        section.append(button);
+                        AllBillets.insertBefore(section,document.querySelector("section.allBilletsSearch section.newBillets"));   
+                    }
+                }
+            })
+            .catch((error) => {
+                error.text.then(errorMessage => {
+                    console.log("Request Failed : "+errorMessage);
+                })
+            })
         }else{
             alert("Veuillez compléter toutes les données pour ajouter un billet à votre panier");
         }
+        tableau[12].style.display = "inherit";
+        tableau[3].style.display = "none";  
+    })
+    .catch((error) => {
+        error.text.then(errorMessage => {
+            console.log('Request Failed : '+errorMessage)
+        })
+    })   
 }
 function allBillets(){
     fetch('http://gigondas:1111/sprietna/ihm/tp4/users/history/'+id)
@@ -143,12 +231,12 @@ function allBillets(){
             let heures = Math.floor(duration/60);
             let minutes = duration - (heures * 60);
 
-            cityFrom = element.schedule.travel.from.city;
-            cityFromID = element.schedule.travel.from.id;
-            cityFromName = element.schedule.travel.from.name;
-            cityTo = element.schedule.travel.to.city;
-            cityToID = element.schedule.travel.to.id;
-            cityToName = element.schedule.travel.to.name;
+            let cityFrom = element.schedule.travel.from.city;
+            let cityFromID = element.schedule.travel.from.id;
+            let cityFromName = element.schedule.travel.from.name;
+            let cityTo = element.schedule.travel.to.city;
+            let cityToID = element.schedule.travel.to.id;
+            let cityToName = element.schedule.travel.to.name;
                                
             let sectionNewBillet = document.createElement("section");
             sectionNewBillet.classList.add("newBillet");
@@ -172,15 +260,16 @@ function allBillets(){
             button.textContent = "Annuler le trajet";
             sectionNewBillet.append(button);
             let allBillets = document.querySelector("section.allBillets");
-            allBillets.insertBefore(sectionNewBillet,document.querySelector("section.newBillets"));    
+            allBillets.insertBefore(sectionNewBillet,document.querySelector("section.allBillets section.newBillets"));    
         }
     })
     .catch((error) => {
         error.text.then(errorMessage => {
-            console.log('Request Failed :'+ errorMessage);
+            console.log('Request Failed : '+ errorMessage);
         })
     })
 }
+
 /* Events */
 cgu2.addEventListener("click",function(){
     doNotShow();
@@ -265,6 +354,10 @@ document.querySelector('#connect').addEventListener('click', connect);
 document.querySelector('#deconnect').addEventListener('click', deconnect); 
 document.querySelector("#shearch").addEventListener('click', audio);
 document.querySelector("#submitBillet").addEventListener('click', formToBillet);
+let buttonBasket = document.querySelectorAll("button.addToBasket");
+for(element of buttonBasket){
+    element.addEventListener('click', addBasket);  
+}
 let buttonBack = document.querySelectorAll("button.back");
 for(element of buttonBack){
     element.addEventListener('click', back);  
@@ -294,8 +387,6 @@ fetch("http://gigondas:1111/sprietna/ihm/tp4/stations")
         console.log('Request Failed : ' + errorMessage)
     })
 });
-
-
 /* connexion */
 if(connexion != null){
     let doc = document.createElement("p");

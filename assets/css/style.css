@@ -309,7 +309,7 @@ main section#account form input[type="mailto"]:focus:invalid, main section#accou
     outline: none;
 }
 /* main billets */
-main section#billets section.allBillets{
+main section#billets section.allBillets, section.allBilletsSearch{
     display: flex;
     flex-wrap: wrap;
     width: 99%;
