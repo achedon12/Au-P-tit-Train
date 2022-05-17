@@ -102,13 +102,6 @@ function audio(event){
 function back(){
     window.location.replace("index.html");
 }
-function addBasket(event){
-    console.log("test");
-    event.preventDefault();
-    event.stopPropagation();
-    addToBasket(event.target.id);
-    alert("Vous avez bien ajouté le billet au panier");
-}
 function addToBasket(value){
     let trajet = [];
     for(element of JSON.parse(sessionStorage.getItem("trajets"))){
@@ -160,7 +153,6 @@ function formToBillet(event){
                 }
             })
             .then((billet) => {
-                console.log("voici la liste de tous les billets");
                 let AllBillets = document.querySelector("section.allBilletsSearch");
                 if(billet.lenght == 0){
                     let h2 = document.createElement("h2");
@@ -354,10 +346,18 @@ document.querySelector('#connect').addEventListener('click', connect);
 document.querySelector('#deconnect').addEventListener('click', deconnect); 
 document.querySelector("#shearch").addEventListener('click', audio);
 document.querySelector("#submitBillet").addEventListener('click', formToBillet);
+/* bug */
 let buttonBasket = document.querySelectorAll("button.addToBasket");
 for(element of buttonBasket){
-    element.addEventListener('click', addBasket);  
+    element.addEventListener('click', function(event){
+        event.preventDefault();
+        event.stopPropagation();
+        console.log("test");
+        addToBasket(event.target.id);
+        alert("Vous avez bien ajouté le billet au panier"); 
+    });  
 }
+
 let buttonBack = document.querySelectorAll("button.back");
 for(element of buttonBack){
     element.addEventListener('click', back);  
