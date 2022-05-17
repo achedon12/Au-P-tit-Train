@@ -131,37 +131,21 @@ function allBillets(){
     })
     .then(billet => {
         for(element of billet){
-            let surname;
-            let firstname;
-            let mail;
-            let data;
-            let departureTime;
-            let type;
-            let duration;
-            let cityFrom;
-            let cityFromID;
-            let cityFromName;
-            let cityTo;
-            let cityToID;
-            let cityToName;
-            console.log(element);
-            console.log("lol")
-            
-            surname = element.info.surname;
-            firstname = element.info.firstname;
-            mail = element.info.mail;
-             
-            date = element.schedule.date;
-            departureTime = element.schedule.departureTime;
-                    
-            type = element.schedule.type;
-                        
-            duration = element.schedule.travel.duration;
-                         
+            let price = element.schedule.price;
+            let surname = element.info.surname;
+            let firstname = element.info.firstname;
+            let mail = element.info.mail; 
+            let date = element.schedule.date;
+            let departureTime = element.schedule.departureTime;
+            let type = element.schedule.type;
+            let duration = element.schedule.travel.duration;
+
+            let heures = Math.floor(duration/60);
+            let minutes = duration - (heures * 60);
+
             cityFrom = element.schedule.travel.from.city;
             cityFromID = element.schedule.travel.from.id;
             cityFromName = element.schedule.travel.from.name;
-                               
             cityTo = element.schedule.travel.to.city;
             cityToID = element.schedule.travel.to.id;
             cityToName = element.schedule.travel.to.name;
@@ -175,8 +159,14 @@ function allBillets(){
             h2_2.textContent = cityFromName+" - "+cityToName;
             sectionNewBillet.append(h2_2);
             let h2_3 = document.createElement("h2");
-            h2_3.textContent = departureTime;
+            h2_3.textContent = heures+" h "+minutes+" min";
             sectionNewBillet.append(h2_3);
+            let h2_4 = document.createElement("h2");
+            h2_4.textContent = "Départ : "+departureTime;
+            sectionNewBillet.append(h2_4);
+            let h2_5 = document.createElement("h2");
+            h2_5.textContent = "Prix : "+price+" €";
+            sectionNewBillet.append(h2_5);
             let button = document.createElement("button");
             button.classList.add("annuler");
             button.textContent = "Annuler le trajet";
@@ -304,6 +294,7 @@ fetch("http://gigondas:1111/sprietna/ihm/tp4/stations")
         console.log('Request Failed : ' + errorMessage)
     })
 });
+
 
 /* connexion */
 if(connexion != null){
