@@ -1,9 +1,7 @@
 /* definitions des variables */
 let user = sessionStorage.getItem("user");
 let connexion = sessionStorage.getItem("connexion");
-let email = sessionStorage.getItem("email");
 let id = sessionStorage.getItem("id");
-let trajets = sessionStorage.getItem("trajets");
 let cgu2 = document.getElementById("cgu-2");
 let cgv2 = document.getElementById("cgv-2");
 let notifications2 = document.getElementById("notifications-2");
@@ -60,18 +58,13 @@ function connect(event){
             for(element of user){
                 if(element.mail == mail){
                     sessionStorage.setItem("user",element.surname);
-                    sessionStorage.setItem("email",element.mail);
                     sessionStorage.setItem("id",element.id);
                     sessionStorage.setItem("connexion",true);
-                    console.log("Vous etes maintenant connecté sur le compte n°"+element.id);
                     window.location.replace("index.html");
+                    alert("Connexion réussie");
                     break;
                 }
-            }
-            if(connexion == null){
-                alert("L'identifiant n'existe pas");
-            }
-            
+            }            
         }else{
             alert("Veuillez préciser un mail et un mot de passe valide")
         }
@@ -87,6 +80,8 @@ function deconnect(event){
     event.stopPropagation();
     sessionStorage.clear();
     window.location.replace("index.html");
+    sessionStorage.removeItem("trajets");
+    sessionStorage.removeItem("user");
 }
 function audio(event){
     event.preventDefault();
@@ -101,15 +96,6 @@ function audio(event){
 }
 function back(){
     window.location.replace("index.html");
-}
-function addToBasket(value){
-    let trajet = [];
-    for(element of JSON.parse(sessionStorage.getItem("trajets"))){
-        trajet.push(element);
-    }
-    trajet.push(value);
-    sessionStorage.setItem("trajets",JSON.stringify(trajet));
-
 }
 function formToBillet(event){
     event.preventDefault();
@@ -135,12 +121,13 @@ function formToBillet(event){
         }
     })
     .then(gare => {
-        if(gareDepart != "" && dateDepart != "" && HourDepart != "" && gareArrivee != "" && dateArrivee != "" && HourArrivee != "" && maxPrice != "" && handicap != "" && reduction != ""){
+        if(gareDepart != "" && dateDepart != "" && HourDepart != "" && gareArrivee != ""){
             for(element of gare){
                 if(element.name == gareDepart){
                     gareDepartID = element.id;
-                }else if(element.name == gareArrivee){
-                    gareArriveeID = element.id;
+                }
+                if(element.name == gareArrivee){
+                    gareArriveeID = element.id  ;
                 }
             }
             /* Second fetch */
@@ -152,7 +139,7 @@ function formToBillet(event){
                     throw response;
                 }
             })
-            .then((billet) => {
+            .then(billet => {
                 let AllBillets = document.querySelector("section.allBilletsSearch");
                 if(billet.lenght == 0){
                     let h2 = document.createElement("h2");
@@ -169,15 +156,23 @@ function formToBillet(event){
                         h2_2.textContent = element.departureTime;
                         section.append(h2_2);              
                         let h2_3 = document.createElement("h2");
-                        h2_3.textContent = element.travel.from.name+" "+element.travel.to.name;
+                        h2_3.textContent = element.travel.from.name+" "+gareArrivee;
                         section.append(h2_3);              
                         let h2_4 = document.createElement("h2");
                         h2_4.textContent = element.price+" €";
                         section.append(h2_4);
                         let button = document.createElement("button");
                         button.classList.add("addToBasket");
-                        button.id = element.date+":"+element.departureTime+":"+element.travel.from.name+":"+element.travel.to.name+":"+element.price;
+                        button.id = element.id;
                         button.textContent = "Ajouter au panier";
+                        button.addEventListener('click',function(){
+                            if(connexion == null){
+                                alert("Veuillez vous connecter avant de pouvoir ajouter de billet au panier");
+                            }else{
+                                sessionStorage.setItem("trajets",element.id);
+                                alert("Vous avez bien ajouté le billet au panier");
+                            }
+                        });
                         section.append(button);
                         AllBillets.insertBefore(section,document.querySelector("section.allBilletsSearch section.newBillets"));   
                     }
@@ -261,7 +256,57 @@ function allBillets(){
         })
     })
 }
-
+function myTrajets(){
+    let AllBillets = document.querySelector("section#trajets");
+    if(sessionStorage.getItem("trajets") == null){
+        let h2 = document.createElement("h2");
+        h2.textContent = "Aucun billet dans le panier pour le moment";
+        AllBillets.insertBefore(h2,document.querySelector("section#trajets h2"));
+    }else{
+        fetch("http://gigondas:1111/sprietna/ihm/tp4/schedules/info/"+JSON.parse(sessionStorage.getItem("trajets"))+" ")
+        .then(response => {
+            if(response.ok){
+                return response.json();
+            }else{
+                throw response;
+            }
+        })
+        .then((trajet) => {
+            let section = document.createElement("section");
+            section.classList.add("newBillet");   
+            let h2_1 = document.createElement("h2");
+            h2_1.textContent = trajet.date;
+            section.append(h2_1);              
+            let h2_2 = document.createElement("h2");
+            h2_2.textContent = trajet.departureTime;
+            section.append(h2_2);              
+            let h2_3 = document.createElement("h2");
+            h2_3.textContent = trajet.travel.from.name+" "+trajet.travel.to.name;
+            section.append(h2_3);              
+            let h2_4 = document.createElement("h2");
+            h2_4.textContent = trajet.price+" €";
+            section.append(h2_4);
+            let button = document.createElement("button");
+            button.classList.add("cancelBillet");
+            button.id = trajet.id;
+            button.textContent = "Annuler le billet";
+            button.addEventListener('click',function(){
+                sessionStorage.removeItem("trajets");
+                alert("Vous avez bien enlevé votre billet de votre panier");
+                window.location.replace("index.html");
+            })
+            section.append(button)
+            let AllBillets = document.querySelector("section.allTrajets");
+            AllBillets.insertBefore(section,document.querySelector("section.allTrajets section.newBillets"));
+        })
+        .catch((error) => {
+            error.text.then(errorMessage => {
+                console.log("Request Failed : "+errorMessage);
+            })
+        })
+    }
+    
+}
 /* Events */
 cgu2.addEventListener("click",function(){
     doNotShow();
@@ -346,23 +391,14 @@ document.querySelector('#connect').addEventListener('click', connect);
 document.querySelector('#deconnect').addEventListener('click', deconnect); 
 document.querySelector("#shearch").addEventListener('click', audio);
 document.querySelector("#submitBillet").addEventListener('click', formToBillet);
-/* bug */
-let buttonBasket = document.querySelectorAll("button.addToBasket");
-for(element of buttonBasket){
-    element.addEventListener('click', function(event){
-        event.preventDefault();
-        event.stopPropagation();
-        console.log("test");
-        addToBasket(event.target.id);
-        alert("Vous avez bien ajouté le billet au panier"); 
-    });  
-}
+document.querySelector("#trajets-2").addEventListener('click', myTrajets);
+
 
 let buttonBack = document.querySelectorAll("button.back");
 for(element of buttonBack){
     element.addEventListener('click', back);  
 }
-/* Data list for  */
+/* Data list for Cities */
 let dataList = document.createElement("datalist");
 let selectTravel = document.querySelector("main form section.top");
 dataList.id = "stations";

@@ -309,7 +309,7 @@ main section#account form input[type="mailto"]:focus:invalid, main section#accou
     outline: none;
 }
 /* main billets */
-main section#billets section.allBillets, section.allBilletsSearch{
+main section#billets section.allBillets, section.allBilletsSearch, section.allTrajets{
     display: flex;
     flex-wrap: wrap;
     width: 99%;
@@ -427,3 +427,4 @@ footer button p{
 .bold{
     font-weight: bold;
 }
+/* Responsive */
